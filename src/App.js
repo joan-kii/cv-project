@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Topbar from './components/TopBar';
+import Jumbo from './components/Jumbo';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends Component {
     return (
       <div>
         <Topbar />
+        <Jumbo />
       </div>
     )
   }
