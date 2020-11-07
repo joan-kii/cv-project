@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Topbar from './components/TopBar';
 import Jumbo from './components/Jumbo';
+import Personal from './components/Personal';
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends Component {
       <div>
         <Topbar />
         <Jumbo />
+        <Personal />
       </div>
     )
   }

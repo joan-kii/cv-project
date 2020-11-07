@@ -5,18 +5,19 @@ import jumboImage from '../images/jumboImage.jpg';
 import Container from 'react-bootstrap/Container';
 
 const JumboStyled = styled.div`
-  .jumbo: {
-    background: url(${jumboImage}) no repeat fixed bottom;
+  .jumbo {
+    background: url(${jumboImage}) no-repeat fixed top;
     background-size: cover;
-    height: 200px;
+    height: 164px;
     position: relative;
     z-index: -2;
-  }`;
+    color: white;
+  }
+`;
 
-function Jumbo() {
-  return (
+const Jumbo = () => (
     <JumboStyled>
-      <Jumbotron as='div' fluid className='jumbo'>
+      <Jumbotron fluid className='jumbo'>
         <Container>
             <h1>Crea tu Curriculum Vitae</h1>
             <p>Cuéntale al mundo quién eres.</p>
@@ -24,6 +25,5 @@ function Jumbo() {
       </Jumbotron>
     </JumboStyled>  
   )
-}
 
 export default Jumbo
