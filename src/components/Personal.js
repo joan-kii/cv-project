@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 const CardStyled = styled.div`
   .title {
@@ -16,6 +17,14 @@ const CardStyled = styled.div`
   `;
 
 class Personal extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       
+    }
+  }
+
   render() {
     return (
       <CardStyled>
@@ -23,17 +32,55 @@ class Personal extends Component {
           <h2 className='title'>Información Personal</h2>
 
           <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
-            <Form.Row>
-              <Form.Group controlId='formGridName'>
-                <Col>
+
+            <Form.Row className='justify-content-between'>
+              <Col>
+                <Form.Group controlId='formGridName'>
                   <Form.Label>Nombre</Form.Label>
-                  <Form.Control placeholder='Nombre' />
-                </Col>
-              </Form.Group>
-              <Form.Group controlId='formGridSecondName'>
-                <Form.Label>Apellidos</Form.Label>
-                <Form.Control placeholder='Apellidos' />
-              </Form.Group>
+                  <Form.Control type='text' placeholder='Nombre' />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='formGridSecondName'>
+                  <Form.Label>Apellidos</Form.Label>
+                  <Form.Control type='text' placeholder='Apellidos' />
+                </Form.Group>
+              </Col>
+            </Form.Row>
+
+            <Form.Group controlId='formGridEmail'>
+              <Form.Label>Email</Form.Label>
+              <Form.Control type='email' placeholder='joankii@theodinproject.com' />
+            </Form.Group>
+
+            <Form.Row className='justify-content-between'>
+              <Col>
+                <Form.Group controlId='formGridPhone'>
+                  <Form.Label>Teléfono</Form.Label>
+                  <Form.Control type='text' placeholder='Teléfono' />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='formGridPortfolio'>
+                  <Form.Label>Portfolio</Form.Label>
+                  <Form.Control type='url' placeholder='github.com/joan-kii' />
+                </Form.Group>
+              </Col>
+            </Form.Row>
+
+            <Form.Row className='justify-content-between'>
+              <Col>
+                <Form.Group controlId='formGridCity'>
+                  <Form.Label>Ciudad</Form.Label>
+                  <Form.Control type='text' placeholder='Ciudad' />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId='formGridCountry'>
+                  <Form.Label>País</Form.Label>
+                  <Form.Control type='text' placeholder='País' />
+                </Form.Group>
+              </Col>
             </Form.Row>
           </Form>
         </Container>

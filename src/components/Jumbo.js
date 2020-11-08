@@ -16,14 +16,14 @@ const JumboStyled = styled.div`
 `;
 
 const Jumbo = () => (
-    <JumboStyled>
-      <Jumbotron fluid className='jumbo'>
-        <Container>
-            <h1>Crea tu Curriculum Vitae</h1>
-            <p>Cuéntale al mundo quién eres.</p>
-        </Container>
-      </Jumbotron>
-    </JumboStyled>  
-  )
+  <JumboStyled>
+    <Jumbotron fluid className='jumbo'>
+      <Container>
+          <h1>Crea tu Curriculum Vitae</h1>
+          <p>Cuéntale al mundo quién eres.</p>
+      </Container>
+    </Jumbotron>
+  </JumboStyled>  
+)
 
 export default Jumbo

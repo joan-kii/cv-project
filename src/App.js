@@ -8,7 +8,14 @@ class App extends Component {
     super(props)
   
     this.state = {
-       
+      personal: {
+        name: '',
+        secondName: '',
+        email: '',
+        phone: '',
+        city: '',
+        country: ''
+      }
     }
   }
   
