@@ -11,8 +11,8 @@ function TopBar() {
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
             <Nav.Link href='#personal'>Personal</Nav.Link>
-            <Nav.Link href='#formacion'>Formación</Nav.Link>
-            <Nav.Link href='#profesional'>Profesional</Nav.Link>
+            <Nav.Link href='#education'>Formación</Nav.Link>
+            <Nav.Link href='#career'>Profesional</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>  

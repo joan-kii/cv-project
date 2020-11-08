@@ -13,18 +13,40 @@ class App extends Component {
         secondName: '',
         email: '',
         phone: '',
+        portfolio: '',
         city: '',
         country: ''
+      },
+      education: {
+          schools: [
+            {
+              school: '',
+              title: '',
+              endDate: ''
+          }
+        ]
+      },
+      career: {
+        companies: [
+          {
+            company: '',
+            position: '',
+            tasks: [''],
+            duartion: '',
+            endDate: ''
+          }
+        ]
       }
     }
   }
   
   render() {
+    const {personal, education, career} = this.state;
     return (
       <div>
         <Topbar />
         <Jumbo />
-        <Personal />
+        <Personal info={personal} rootName='personal' />
       </div>
     )
   }

@@ -26,6 +26,8 @@ class Personal extends Component {
   }
 
   render() {
+    const {name, secondName, email, phone, portfolio, city, country} = this.props.info;
+
     return (
       <CardStyled>
         <Container id='personal' className='mt-5 card' as='section'>
@@ -37,33 +39,33 @@ class Personal extends Component {
               <Col>
                 <Form.Group controlId='formGridName'>
                   <Form.Label>Nombre</Form.Label>
-                  <Form.Control type='text' placeholder='Nombre' />
+                  <Form.Control value={name} type='text' placeholder='Nombre' />
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group controlId='formGridSecondName'>
                   <Form.Label>Apellidos</Form.Label>
-                  <Form.Control type='text' placeholder='Apellidos' />
+                  <Form.Control value={secondName} type='text' placeholder='Apellidos' />
                 </Form.Group>
               </Col>
             </Form.Row>
 
             <Form.Group controlId='formGridEmail'>
               <Form.Label>Email</Form.Label>
-              <Form.Control type='email' placeholder='joankii@theodinproject.com' />
+              <Form.Control value={email} type='email' placeholder='joankii@theodinproject.com' />
             </Form.Group>
 
             <Form.Row className='justify-content-between'>
               <Col>
                 <Form.Group controlId='formGridPhone'>
                   <Form.Label>Teléfono</Form.Label>
-                  <Form.Control type='text' placeholder='Teléfono' />
+                  <Form.Control value={phone} type='text' placeholder='Teléfono' />
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group controlId='formGridPortfolio'>
                   <Form.Label>Portfolio</Form.Label>
-                  <Form.Control type='url' placeholder='github.com/joan-kii' />
+                  <Form.Control value={portfolio} type='url' placeholder='github.com/joan-kii' />
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -72,13 +74,13 @@ class Personal extends Component {
               <Col>
                 <Form.Group controlId='formGridCity'>
                   <Form.Label>Ciudad</Form.Label>
-                  <Form.Control type='text' placeholder='Ciudad' />
+                  <Form.Control value={city} type='text' placeholder='Ciudad' />
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group controlId='formGridCountry'>
                   <Form.Label>País</Form.Label>
-                  <Form.Control type='text' placeholder='País' />
+                  <Form.Control value={country} type='text' placeholder='País' />
                 </Form.Group>
               </Col>
             </Form.Row>
