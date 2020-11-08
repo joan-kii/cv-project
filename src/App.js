@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import Topbar from './components/TopBar';
 import Jumbo from './components/Jumbo';
 import Personal from './components/Personal';
+import Education from './components/Education';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
   
+    this.updateState = this.updateState.bind(this);
+
     this.state = {
       personal: {
         name: '',
@@ -40,13 +43,20 @@ class App extends Component {
     }
   }
   
+  updateState(property, data) {
+    this.setState({
+      [property]: data
+    })
+  }
+  
   render() {
     const {personal, education, career} = this.state;
     return (
       <div>
         <Topbar />
         <Jumbo />
-        <Personal info={personal} rootName='personal' />
+        <Personal updateState={this.updateState} info={personal} rootName='personal' />
+        {/* <Education updateState={this.updateState} info={education} rootName='education' /> */}
       </div>
     )
   }
