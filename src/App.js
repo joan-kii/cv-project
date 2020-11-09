@@ -51,6 +51,7 @@ class App extends Component {
   
   render() {
     const {personal, education, career} = this.state;
+
     return (
       <div>
         <Topbar />

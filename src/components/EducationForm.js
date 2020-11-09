@@ -12,7 +12,8 @@ class EducationForm extends Component {
 }
     
   render() {
-    const {school, title, endDate} = this.state.props;
+    const {school, title, endDate} = this.props.schools;
+    const {updateState, rootName} = this.props;
     
     return (
       <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>

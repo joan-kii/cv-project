@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button'
 
 const CardStyled = styled.div`
   .title {
@@ -14,20 +15,35 @@ const CardStyled = styled.div`
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
+
+  .submitButton {
+    margin-bottom: 1em;
+  }
   `;
 
 class Personal extends Component {
   constructor(props) {
     super(props)
-  
+    
+    this.toggleEditMode = this.toggleEditMode.bind(this);
+
     this.state = {
-       
+      editMode: true
     }
+  }
+
+  toggleEditMode() {
+    this.setState((prevState) => ({
+      editMode: !prevState.editMode,
+    }))
   }
 
   render() {
     const {updateState, info, rootName} = this.props;
-    const {name, secondName, email, phone, portfolio, city, country} = info;
+    const { name, secondName, email, phone, 
+      portfolio, city, country } = info;
+
+    const editMode = this.state.editMode;  
 
     return (
       <CardStyled>
@@ -44,7 +60,8 @@ class Personal extends Component {
                     value={name} 
                     type='text' 
                     placeholder='Nombre' 
-                    onChange={(e) => updateState(rootName, {...this.props.info, name:e.target.value})}/>
+                    onChange={(e) => updateState(rootName, 
+                      {...this.props.info, name: e.target.value})}/>
                 </Form.Group>
               </Col>
               <Col>
@@ -54,7 +71,8 @@ class Personal extends Component {
                     value={secondName} 
                     type='text' 
                     placeholder='Apellidos' 
-                    onChange={(e) => updateState(rootName, {...this.props.info, secondName:e.target.value})}/>
+                    onChange={(e) => updateState(rootName, 
+                      {...this.props.info, secondName: e.target.value})}/>
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -65,7 +83,8 @@ class Personal extends Component {
                 value={email} 
                 type='email' 
                 placeholder='joankii@theodinproject.com' 
-                onChange={(e) => updateState(rootName, {...this.props.info, email:e.target.value})}/>
+                onChange={(e) => updateState(rootName, 
+                  {...this.props.info, email: e.target.value})}/>
             </Form.Group>
 
             <Form.Row className='justify-content-between'>
@@ -76,7 +95,8 @@ class Personal extends Component {
                     value={phone} 
                     type='text' 
                     placeholder='Teléfono' 
-                    onChange={(e) => updateState(rootName, {...this.props.info, phone:e.target.value})}/>
+                    onChange={(e) => updateState(rootName, 
+                      {...this.props.info, phone: e.target.value})}/>
                 </Form.Group>
               </Col>
               <Col>
@@ -86,7 +106,8 @@ class Personal extends Component {
                     value={portfolio} 
                     type='url' 
                     placeholder='github.com/joan-kii' 
-                    onChange={(e) => updateState(rootName, {...this.props.info, portfolio:e.target.value})}/>
+                    onChange={(e) => updateState(rootName, 
+                      {...this.props.info, portfolio: e.target.value})}/>
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -99,7 +120,8 @@ class Personal extends Component {
                     value={city} 
                     type='text' 
                     placeholder='Ciudad' 
-                    onChange={(e) => updateState(rootName, {...this.props.info, city:e.target.value})}/>
+                    onChange={(e) => updateState(rootName, 
+                      {...this.props.info, city: e.target.value})}/>
                 </Form.Group>
               </Col>
               <Col>
@@ -109,10 +131,20 @@ class Personal extends Component {
                     value={country} 
                     type='text' 
                     placeholder='País' 
-                    onChange={(e) => updateState(rootName, {...this.props.info, country:e.target.value})}/>
+                    onChange={(e) => updateState(rootName, 
+                      {...this.props.info, country: e.target.value})}/>
                 </Form.Group>
               </Col>
             </Form.Row>
+
+            <Button 
+              className='submitButton'
+              variant={editMode ? 'primary' : 'secondary'}
+              size='lg'
+              onClick={this.toggleEditMode}>
+              {editMode ? 'Enviar' : 'Editar'}
+            </Button>
+
           </Form>
         </Container>
       </CardStyled>    

@@ -14,13 +14,17 @@ class Education extends Component {
   }
   
   render() {
-    const {school, title, endDate} = this.props.info;
+    const {schools} = this.props.info;
+    const {updateState, rootName} = this.props;
 
     return (
       <CardStyled>
         <Container id='education' className='mt-5 card' as='section'>
         <h2 className='title'>Formación</h2>
-          <EducationForm school={school} title={title} endDate={endDate} />
+          <EducationForm 
+            updateState={updateState} 
+            schools={schools} 
+            rootName={rootName} />
         </Container>
       </CardStyled>    
     )
