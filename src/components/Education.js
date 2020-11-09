@@ -7,6 +7,7 @@ import CardStyled from './Personal';
 class Education extends Component {
   constructor(props) {
       super(props)
+      this.props = props;
   
       this.state = {
            

@@ -16,14 +16,19 @@ const CardStyled = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
 
-  .submitButton {
+  .submitButton, .deleteButton {
     margin-bottom: 1em;
+  }
+
+  p {
+    color: #007bff;
   }
   `;
 
 class Personal extends Component {
   constructor(props) {
     super(props)
+    this.props = props;
     
     this.toggleEditMode = this.toggleEditMode.bind(this);
 
@@ -34,7 +39,7 @@ class Personal extends Component {
 
   toggleEditMode() {
     this.setState((prevState) => ({
-      editMode: !prevState.editMode,
+      editMode: !prevState.editMode
     }))
   }
 
@@ -56,58 +61,83 @@ class Personal extends Component {
               <Col>
                 <Form.Group controlId='formGridName'>
                   <Form.Label>Nombre</Form.Label>
+
+                  {editMode ?
                   <Form.Control 
                     value={name} 
                     type='text' 
                     placeholder='Nombre' 
                     onChange={(e) => updateState(rootName, 
-                      {...this.props.info, name: e.target.value})}/>
+                      {...this.props.info, name: e.target.value})}
+                    />
+                    : <p>{name}</p>
+                    }
+
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group controlId='formGridSecondName'>
                   <Form.Label>Apellidos</Form.Label>
+
+                  {editMode ?
                   <Form.Control 
                     value={secondName} 
                     type='text' 
                     placeholder='Apellidos' 
                     onChange={(e) => updateState(rootName, 
                       {...this.props.info, secondName: e.target.value})}/>
+                    : <p>{secondName}</p>
+                    }
+
                 </Form.Group>
               </Col>
             </Form.Row>
 
             <Form.Group controlId='formGridEmail'>
               <Form.Label>Email</Form.Label>
+
+              {editMode ?
               <Form.Control 
                 value={email} 
                 type='email' 
                 placeholder='joankii@theodinproject.com' 
                 onChange={(e) => updateState(rootName, 
                   {...this.props.info, email: e.target.value})}/>
-            </Form.Group>
+                : <p>{email}</p>
+                }
 
+            </Form.Group>
             <Form.Row className='justify-content-between'>
               <Col>
                 <Form.Group controlId='formGridPhone'>
                   <Form.Label>Teléfono</Form.Label>
+
+                  {editMode ?
                   <Form.Control 
                     value={phone} 
                     type='text' 
                     placeholder='Teléfono' 
                     onChange={(e) => updateState(rootName, 
                       {...this.props.info, phone: e.target.value})}/>
+                    : <p>{phone}</p>
+                    } 
+
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group controlId='formGridPortfolio'>
                   <Form.Label>Portfolio</Form.Label>
+
+                  {editMode ?
                   <Form.Control 
                     value={portfolio} 
                     type='url' 
-                    placeholder='github.com/joan-kii' 
+                    placeholder='https://github.com/joan-kii' 
                     onChange={(e) => updateState(rootName, 
                       {...this.props.info, portfolio: e.target.value})}/>
+                    : <p>{portfolio}</p>
+                    }
+
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -116,23 +146,33 @@ class Personal extends Component {
               <Col>
                 <Form.Group controlId='formGridCity'>
                   <Form.Label>Ciudad</Form.Label>
+
+                  {editMode ?
                   <Form.Control 
                     value={city} 
                     type='text' 
                     placeholder='Ciudad' 
                     onChange={(e) => updateState(rootName, 
                       {...this.props.info, city: e.target.value})}/>
+                    : <p>{city}</p>
+                    }
+
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Group controlId='formGridCountry'>
                   <Form.Label>País</Form.Label>
+
+                  {editMode ?
                   <Form.Control 
                     value={country} 
                     type='text' 
                     placeholder='País' 
                     onChange={(e) => updateState(rootName, 
                       {...this.props.info, country: e.target.value})}/>
+                    : <p>{country}</p>
+                    }
+
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -142,7 +182,7 @@ class Personal extends Component {
               variant={editMode ? 'primary' : 'secondary'}
               size='lg'
               onClick={this.toggleEditMode}>
-              {editMode ? 'Enviar' : 'Editar'}
+                {editMode ? 'Enviar' : 'Editar'}
             </Button>
 
           </Form>
