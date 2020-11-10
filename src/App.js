@@ -20,28 +20,23 @@ class App extends Component {
         city: '',
         country: ''
       },
+
       education: {
-          schools: [
-            {
-              school: '',
-              title: '',
-              endDate: ''
-          }
-        ]
+        school: '',
+        title: '',
+        endDate: ''
       },
+      
       career: {
-        companies: [
-          {
-            company: '',
-            position: '',
-            tasks: [''],
-            duartion: '',
-            endDate: ''
-          }
-        ]
+        company: '',
+        position: '',
+        tasks: [''],
+        duartion: '',
+        endDate: ''
       }
     }
   }
+
   
   updateState(property, data) {
     this.setState({
@@ -57,7 +52,7 @@ class App extends Component {
         <Topbar />
         <Jumbo />
         <Personal updateState={this.updateState} info={personal} rootName='personal' />
-        {/* <Education updateState={this.updateState} info={education} rootName='education' /> */}
+        <Education updateState={this.updateState} info={education} rootName='education' />
       </div>
     )
   }

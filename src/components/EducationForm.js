@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 class EducationForm extends Component {
   constructor(props) {
     super(props)
-    this.props = props;
 
     this.toggleEditMode = this.toggleEditMode.bind(this);
 
@@ -22,37 +21,62 @@ class EducationForm extends Component {
   }
     
   render() {
-    const editMode = this.state.editMode;
-    const {school, title, endDate} = this.props.schools;
-    const {updateState, rootName} = this.props;
+    const {updateState, info, rootName} = this.props;
+    const {school, title, endDate} = info;
     
+    const editMode = this.state.editMode;
+
     return (
       <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
 
         <Form.Group controlId='formGridSchool'>
           <Form.Label>Centro Educativo</Form.Label>
+
+          {editMode ?
           <Form.Control 
             value={school}
             type='text' 
-            placeholder='Centro Educativo' />
+            placeholder='Centro Educativo'
+            onChange={(e) => updateState(rootName,
+              {...this.props.info, school: e.target.value})}
+              />
+            : <p>{school}</p>
+            }
+
         </Form.Group>
 
         <Form.Group controlId='formGridTitle'>
           <Form.Label>Titulación</Form.Label>
+
+          {editMode ?
           <Form.Control 
             value={title} 
             type='text' 
-            placeholder='Titulación' />
+            placeholder='Titulación'
+            onChange={(e) => updateState(rootName,
+              {...this.props.info, title: e.target.value})}
+              />
+            : <p>{title}</p>
+            }
+
         </Form.Group>
 
         <Form.Row className='justify-content-between'>
           <Col>
             <Form.Group controlId='formGridEndDate'>
                 <Form.Label>Fecha de Finalización</Form.Label>
+
+                {editMode ?
                 <Form.Control 
                   value={endDate} 
                   type='date' 
-                  placeholder='Fecha' />
+                  placeholder='Fecha'
+                  onChange={(e) => updateState(rootName,
+                    {...this.props.info, endDate: e.target.value})}
+                    />
+                  : <p>{endDate}</p>
+                  }
+
             </Form.Group>
           </Col>
         </Form.Row>

@@ -1,34 +1,13 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import CardStyled from './CardStyled';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 
-const CardStyled = styled.div`
-  .title {
-    text-align: center;
-  }
-
-  .card {
-    max-width: 650px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-
-  .submitButton, .deleteButton {
-    margin-bottom: 1em;
-  }
-
-  p {
-    color: #007bff;
-  }
-  `;
-
 class Personal extends Component {
   constructor(props) {
     super(props)
-    this.props = props;
     
     this.toggleEditMode = this.toggleEditMode.bind(this);
 
@@ -193,4 +172,3 @@ class Personal extends Component {
 }
 
 export default Personal
-export  { CardStyled }
