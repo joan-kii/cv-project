@@ -15,8 +15,8 @@ const CardStyled = styled.div`
     margin-bottom: 1em;
   }
 
-  .plusButton {
-    border-radius: 50%;
+  .addTaskButton {
+    border-radius: 10px;
   }
 
   p {

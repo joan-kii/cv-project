@@ -8,6 +8,8 @@ class CareerForm extends Component {
     super(props)
 
     this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.addTask = this.addTask.bind(this);
+    this.updateCompany = this.updateCompany.bind(this);
 
     this.state = {
       editMode: true      
@@ -18,6 +20,20 @@ class CareerForm extends Component {
     this.setState((prevState) => ({
       editMode: !prevState.editMode
     }))
+  }
+
+  updateCompany(index, value) {
+    // continuar aquí
+  }
+
+  addTask() {
+    const {updateState, info, rootName} = this.props; 
+
+    info.tasks.push('');
+
+    updateState(rootName, 
+      {...info, tasks: info.tasks})
+      console.log(info.tasks)
   }
     
   render() {
@@ -65,21 +81,24 @@ class CareerForm extends Component {
           <Form.Label>
             Tareas {editMode && (
               <Button
-              className='plusButton'
-              variant='outline-primary'
-              size='sm'>+</Button>)}
+              className='addTaskButton'
+              variant='light'
+              onClick={this.addTask}>+</Button>)}
           </Form.Label>
 
-          {editMode ?
-          <Form.Control 
-            value={tasks} 
-            type='text' 
-            placeholder='Tareas'
-            onChange={(e) => updateState(rootName,
-              {...this.props.info, tasks: e.target.value})}
-              />
-            : <p>{tasks}</p>
-            }
+          {editMode ? tasks.map((task, index) => 
+            <div key={index}>
+              <Form.Control 
+                className='mt-2'
+                value={task} 
+                type='text' 
+                placeholder='Tareas'
+                onChange={(e) => updateState(rootName, // llamar a updateCompany
+                  {...info, tasks: [e.target.value]})}
+                  />
+            </div>)
+              : <p>{tasks}</p>
+              }
 
         </Form.Group>
 
