@@ -15,6 +15,10 @@ const CardStyled = styled.div`
     margin-bottom: 1em;
   }
 
+  .plusButton {
+    border-radius: 50%;
+  }
+
   p {
     color: #007bff;
   }

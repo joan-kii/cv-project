@@ -3,6 +3,7 @@ import Topbar from './components/TopBar';
 import Jumbo from './components/Jumbo';
 import Personal from './components/Personal';
 import Education from './components/Education';
+import Career from './components/Career';
 
 class App extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class App extends Component {
         company: '',
         position: '',
         tasks: [''],
-        duartion: '',
+        duration: '',
         endDate: ''
       }
     }
@@ -53,6 +54,7 @@ class App extends Component {
         <Jumbo />
         <Personal updateState={this.updateState} info={personal} rootName='personal' />
         <Education updateState={this.updateState} info={education} rootName='education' />
+        <Career updateState={this.updateState} info={career} rootName='career' />
       </div>
     )
   }
