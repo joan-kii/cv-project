@@ -15,8 +15,18 @@ const CardStyled = styled.div`
     margin-bottom: 1em;
   }
 
+  .inputTask {
+    width: 620px;
+    margin-bottom: 0.3em; 
+  }
+
   .addTaskButton {
     border-radius: 10px;
+  }
+  
+  .deleteTaskButton {
+    margin-top: 0.3em;
+    float: right;
   }
 
   p {

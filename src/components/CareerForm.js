@@ -8,8 +8,9 @@ class CareerForm extends Component {
     super(props)
 
     this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.updateCareer = this.updateCareer.bind(this);
     this.addTask = this.addTask.bind(this);
-    this.updateCompany = this.updateCompany.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
 
     this.state = {
       editMode: true      
@@ -22,14 +23,29 @@ class CareerForm extends Component {
     }))
   }
 
-  updateCompany(index, value) {
-    // continuar aquí
+  updateCareer(index, value) {
+    const {updateState, info, rootName} = this.props; 
+
+    info.tasks[index] = value;
+
+    updateState(rootName, 
+      {...info, tasks: info.tasks})
   }
 
   addTask() {
     const {updateState, info, rootName} = this.props; 
 
     info.tasks.push('');
+
+    updateState(rootName, 
+      {...info, tasks: info.tasks})
+      console.log(info.tasks)
+  }
+
+  deleteTask(index) {
+    const {updateState, info, rootName} = this.props; 
+
+    info.tasks.splice(index, 1);
 
     updateState(rootName, 
       {...info, tasks: info.tasks})
@@ -87,17 +103,30 @@ class CareerForm extends Component {
           </Form.Label>
 
           {editMode ? tasks.map((task, index) => 
-            <div key={index}>
-              <Form.Control 
-                className='mt-2'
-                value={task} 
-                type='text' 
-                placeholder='Tareas'
-                onChange={(e) => updateState(rootName, // llamar a updateCompany
-                  {...info, tasks: [e.target.value]})}
-                  />
+            <div key={index} >
+              <Form.Row>
+                <Col>
+                  <Form.Control 
+                    className='inputTask'
+                    value={task} 
+                    type='text' 
+                    placeholder='Tareas'
+                    onChange={(e) => this.updateCareer(index, e.target.value)}
+                    />
+                </Col>
+                <Col>
+                {tasks.length > 1 &&
+                  (<Button 
+                    className='deleteTaskButton'
+                    variant='outline-danger'
+                    size='sm'
+                    onClick={() => this.deleteTask(index)}>
+                      Borrar
+                    </Button>)}
+                </Col>
+              </Form.Row>      
             </div>)
-              : <p>{tasks}</p>
+              : <p>{tasks.join(' - ')}</p>
               }
 
         </Form.Group>
@@ -148,13 +177,16 @@ class CareerForm extends Component {
             onClick={this.toggleEditMode}>
               {editMode ? 'Enviar' : 'Editar'}
           </Button>
-          <Button
-            className='deleteButton'
-            variant='danger'
-            size='lg'
-            /* onClick={} */>
-              Eliminar
-          </Button>
+
+          {editMode &&
+            <Button
+              className='deleteButton'
+              variant='danger'
+              size='lg'
+              /* onClick={} */>
+                Eliminar
+            </Button>}
+
         </Form.Row>   
       </Form>
     )

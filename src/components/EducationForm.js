@@ -89,13 +89,15 @@ class EducationForm extends Component {
             onClick={this.toggleEditMode}>
               {editMode ? 'Enviar' : 'Editar'}
           </Button>
-          <Button
-            className='deleteButton'
-            variant='danger'
-            size='lg'
-            /* onClick={} */>
-              Eliminar
-          </Button>
+
+          {editMode &&
+            <Button
+              className='deleteButton'
+              variant='danger'
+              size='lg'
+              /* onClick={} */>
+                Eliminar
+            </Button>}
         </Form.Row>   
       </Form>
     )
