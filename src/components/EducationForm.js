@@ -9,6 +9,7 @@ class EducationForm extends Component {
 
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.updateSchool = this.updateSchool.bind(this);
+    this.deleteSchool = this.deleteSchool.bind(this);
 
     this.state = {
       editMode: true      
@@ -16,6 +17,7 @@ class EducationForm extends Component {
   }
 
   toggleEditMode() {
+    console.log(this.props.schools)
     this.setState((prevState) => ({
       editMode: !prevState.editMode
     }))
@@ -30,9 +32,18 @@ class EducationForm extends Component {
     updateState(rootName, 
       {schools: schools})
   }
+
+  deleteSchool(index) {
+    const {updateState, schools, rootName} = this.props;
+
+    schools.splice(index, 1);
+
+    updateState(rootName, 
+      {schools: schools})
+  }
     
   render() {
-    const {key, updateState, schools, rootName} = this.props;
+    const {index, schools} = this.props;
     const {school, title, endDate} = schools;
     
     const editMode = this.state.editMode;
@@ -48,9 +59,9 @@ class EducationForm extends Component {
             value={school}
             type='text' 
             placeholder='Centro Educativo'
-            onChange={(e) => this.updateSchool('school', key, e.target.value)}
+            onChange={(e) => this.updateSchool('school', index, e.target.value)}
               />
-            : <p>{school}</p>
+            : <p>{schools[index].school}</p>
             }
 
         </Form.Group>
@@ -63,10 +74,9 @@ class EducationForm extends Component {
             value={title} 
             type='text' 
             placeholder='Titulación'
-            onChange={(e) => updateState(rootName,
-              {...this.props.info, title: e.target.value})}
-              />
-            : <p>{title}</p>
+            onChange={(e) => this.updateSchool('title', index, e.target.value)}
+            />
+            : <p>{schools[index].title}</p>
             }
 
         </Form.Group>
@@ -81,10 +91,9 @@ class EducationForm extends Component {
                   value={endDate} 
                   type='date' 
                   placeholder='Fecha'
-                  onChange={(e) => updateState(rootName,
-                    {...this.props.info, endDate: e.target.value})}
-                    />
-                  : <p>{endDate}</p>
+                  onChange={(e) => this.updateSchool('endDate', index, e.target.value)}
+                  />
+                  : <p>{schools[index].endDate}</p>
                   }
 
             </Form.Group>
@@ -100,12 +109,12 @@ class EducationForm extends Component {
               {editMode ? 'Enviar' : 'Editar'}
           </Button>
 
-          {editMode &&
+          {schools.length > 1 &&
             <Button
               className='deleteButton'
               variant='danger'
               size='lg'
-              /* onClick={} */>
+              onClick={() => this.deleteSchool(index)} >
                 Eliminar
             </Button>}
         </Form.Row>   
