@@ -8,6 +8,7 @@ class EducationForm extends Component {
     super(props)
 
     this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.updateSchool = this.updateSchool.bind(this);
 
     this.state = {
       editMode: true      
@@ -19,10 +20,20 @@ class EducationForm extends Component {
       editMode: !prevState.editMode
     }))
   }
+
+  updateSchool(property, index, value) {
+    const {updateState, schools, rootName} = this.props;
+
+    schools[index] = {...schools[index],
+    [property]: value};
+
+    updateState(rootName, 
+      {schools: schools})
+  }
     
   render() {
-    const {updateState, info, rootName} = this.props;
-    const {school, title, endDate} = info;
+    const {key, updateState, schools, rootName} = this.props;
+    const {school, title, endDate} = schools;
     
     const editMode = this.state.editMode;
 
@@ -37,8 +48,7 @@ class EducationForm extends Component {
             value={school}
             type='text' 
             placeholder='Centro Educativo'
-            onChange={(e) => updateState(rootName,
-              {...this.props.info, school: e.target.value})}
+            onChange={(e) => this.updateSchool('school', key, e.target.value)}
               />
             : <p>{school}</p>
             }

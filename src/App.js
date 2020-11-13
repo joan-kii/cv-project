@@ -23,9 +23,13 @@ class App extends Component {
       },
 
       education: {
-        school: '',
-        title: '',
-        endDate: ''
+        schools: [
+          {
+          school: '',
+          title: '',
+          endDate: ''
+          }
+        ]
       },
       
       career: {

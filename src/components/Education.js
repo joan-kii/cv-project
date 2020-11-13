@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import CardStyled from './CardStyled';
 import EducationForm from './EducationForm'; 
 import Container from 'react-bootstrap/Container';
-import CardStyled from './CardStyled';
+import Button from 'react-bootstrap/Button';
 
 
 class Education extends Component {
@@ -15,15 +16,22 @@ class Education extends Component {
   
   render() {
     const {updateState, info, rootName} = this.props;
+    const {schools} = info;
+    console.log(info)
+    console.log(schools)
     
     return (
       <CardStyled>
         <Container id='education' className='mt-5 card' as='section'>
         <h2 className='title'>Formación</h2>
+        <Button variant='primary' block>+ Anadir Formación +</Button>
+        {schools.map((school, index) => 
           <EducationForm 
+            key={index}
             updateState={updateState} 
-            info={info} 
+            schools={schools} 
             rootName={rootName} />
+            )}
         </Container>
       </CardStyled>
     )
