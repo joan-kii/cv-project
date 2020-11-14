@@ -8,6 +8,7 @@ class CareerForm extends Component {
     super(props)
 
     this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.updateCompany = this.updateCompany.bind(this);
     this.updateCareer = this.updateCareer.bind(this);
     this.addTask = this.addTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
@@ -23,38 +24,57 @@ class CareerForm extends Component {
     }))
   }
 
-  updateCareer(index, value) {
-    const {updateState, info, rootName} = this.props; 
+  updateCompany(property, indexCompany, value) {
+    const {updateState, companies, rootName} = this.props;
 
-    info.tasks[index] = value;
+    companies[indexCompany] = {...companies[indexCompany],
+    [property]: value};
 
     updateState(rootName, 
-      {...info, tasks: info.tasks})
+      {companies: companies})
   }
 
-  addTask() {
-    const {updateState, info, rootName} = this.props; 
+  deleteCompany(indexCompany) {
+    const {updateState, companies, rootName} = this.props;
 
-    info.tasks.push('');
+    companies[indexCompany].splice(indexCompany, 1);
 
     updateState(rootName, 
-      {...info, tasks: info.tasks})
-      console.log(info.tasks)
+      {companies: companies})
   }
 
-  deleteTask(index) {
-    const {updateState, info, rootName} = this.props; 
+  updateCareer(indexCompany, indexTask, value) {
+    console.log(indexCompany, indexTask, value)
+    const {updateState, companies, rootName} = this.props; 
+    console.log(companies)
 
-    info.tasks.splice(index, 1);
+    companies[indexCompany].tasks[indexTask] = value;
 
     updateState(rootName, 
-      {...info, tasks: info.tasks})
-      console.log(info.tasks)
+      {...companies[indexCompany], tasks: companies[indexCompany].tasks})
+  }
+
+  addTask(indexCompany) {
+    const {updateState, companies, rootName} = this.props; 
+
+    companies[indexCompany].tasks.push('');
+
+    updateState(rootName, 
+      {...companies[indexCompany], tasks: companies[indexCompany].tasks})
+  }
+
+  deleteTask(indexCompany, indexTask) {
+    const {updateState, companies, rootName} = this.props; 
+
+    companies[indexCompany].tasks.splice(indexTask, 1);
+
+    updateState(rootName, 
+      {...companies[indexCompany], tasks: companies[indexCompany].tasks})
   }
     
   render() {
-    const {updateState, info, rootName} = this.props;
-    const {company, position, tasks, duration, endDate} = info;
+    const {index, companies} = this.props;
+    const {company, position, tasks, duration, endDate} = companies[index];
     
     const editMode = this.state.editMode;
 
@@ -69,8 +89,7 @@ class CareerForm extends Component {
             value={company}
             type='text' 
             placeholder='Empresa'
-            onChange={(e) => updateState(rootName,
-              {...this.props.info, company: e.target.value})}
+            onChange={(e) => this.updateCompany('company', index, e.target.value)}
               />
             : <p>{company}</p>
             }
@@ -85,8 +104,7 @@ class CareerForm extends Component {
             value={position} 
             type='text' 
             placeholder='Cargo'
-            onChange={(e) => updateState(rootName,
-              {...this.props.info, position: e.target.value})}
+            onChange={(e) => this.updateCompany('position', index, e.target.value)}
               />
             : <p>{position}</p>
             }
@@ -99,11 +117,11 @@ class CareerForm extends Component {
               <Button
               className='addTaskButton'
               variant='light'
-              onClick={this.addTask}>+</Button>)}
+              onClick={() => this.addTask(index)}>+</Button>)}
           </Form.Label>
 
-          {editMode ? tasks.map((task, index) => 
-            <div key={index} >
+          {editMode ? companies[index].tasks.map((task, indexTask) => 
+            <div key={indexTask} >
               <Form.Row>
                 <Col>
                   <Form.Control 
@@ -111,16 +129,16 @@ class CareerForm extends Component {
                     value={task} 
                     type='text' 
                     placeholder='Tareas'
-                    onChange={(e) => this.updateCareer(index, e.target.value)}
+                    onChange={(e) => this.updateCareer(index, indexTask, e.target.value)}
                     />
                 </Col>
                 <Col>
-                {tasks.length > 1 &&
+                {companies[index].tasks.length > 1 &&
                   (<Button 
                     className='deleteTaskButton'
                     variant='outline-danger'
                     size='sm'
-                    onClick={() => this.deleteTask(index)}>
+                    onClick={() => this.deleteTask(index, indexTask)}>
                       Borrar
                     </Button>)}
                 </Col>
@@ -141,8 +159,7 @@ class CareerForm extends Component {
                   value={duration} 
                   type='text' 
                   placeholder='3 años y 6 meses'
-                  onChange={(e) => updateState(rootName,
-                    {...this.props.info, duration: e.target.value})}
+                  onChange={(e) => this.updateCompany('duration', index, e.target.value)}
                     />
                   : <p>{duration}</p>
                   }
@@ -159,8 +176,7 @@ class CareerForm extends Component {
                   value={endDate} 
                   type='date' 
                   placeholder='Fecha'
-                  onChange={(e) => updateState(rootName,
-                    {...this.props.info, endDate: e.target.value})}
+                  onChange={(e) => this.updateCompany('endDate', index, e.target.value)}
                     />
                   : <p>{endDate}</p>
                   }
@@ -178,12 +194,12 @@ class CareerForm extends Component {
               {editMode ? 'Enviar' : 'Editar'}
           </Button>
 
-          {editMode &&
+          {companies[index].length > 1 &&
             <Button
               className='deleteButton'
               variant='danger'
               size='lg'
-              /* onClick={} */>
+              onClick={() => this.deleteCompany(index)} >
                 Eliminar
             </Button>}
 

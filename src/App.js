@@ -33,11 +33,15 @@ class App extends Component {
       },
       
       career: {
-        company: '',
-        position: '',
-        tasks: [''],
-        duration: '',
-        endDate: ''
+        companies: [
+          {
+          company: '',
+          position: '',
+          tasks: [''],
+          duration: '',
+          endDate: ''
+          }
+        ]
       }
     }
   }

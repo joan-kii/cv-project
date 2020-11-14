@@ -17,7 +17,6 @@ class EducationForm extends Component {
   }
 
   toggleEditMode() {
-    console.log(this.props.schools)
     this.setState((prevState) => ({
       editMode: !prevState.editMode
     }))
