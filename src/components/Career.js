@@ -14,22 +14,29 @@ class Career extends Component {
 
   addCareer() {
     const {updateState, info, rootName} = this.props;
-    const newCompany = Object.keys(info['companies'][0]).reduce((prev, current) => {
-      return {
-        ...prev,
-        [current]: '',
+    const {companies} = info;
+    const newCompany = Object.keys(companies[0]).reduce((prev, current) => {
+      if (Array.isArray(companies[0][current])) {
+        return {
+          ...prev,
+          [current]: ['']
+        };
+        } else {
+          return {  
+            ...prev,
+            [current]: ''
+          };
       }})
 
-    info['companies'].push(newCompany);
+    companies.push(newCompany);
 
     updateState(rootName, 
-      {companies: info})
+      {companies: companies})
   }
   
   render() {
     const {updateState, info, rootName} = this.props;
     const {companies} = info;
-    console.log(companies)
 
     return (
       <CardStyled>

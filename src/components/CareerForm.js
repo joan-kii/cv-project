@@ -37,21 +37,19 @@ class CareerForm extends Component {
   deleteCompany(indexCompany) {
     const {updateState, companies, rootName} = this.props;
 
-    companies[indexCompany].splice(indexCompany, 1);
+    companies.splice(indexCompany, 1);
 
     updateState(rootName, 
       {companies: companies})
   }
 
   updateCareer(indexCompany, indexTask, value) {
-    console.log(indexCompany, indexTask, value)
     const {updateState, companies, rootName} = this.props; 
-    console.log(companies)
 
     companies[indexCompany].tasks[indexTask] = value;
 
     updateState(rootName, 
-      {...companies[indexCompany], tasks: companies[indexCompany].tasks})
+      {companies: companies})
   }
 
   addTask(indexCompany) {
@@ -60,7 +58,7 @@ class CareerForm extends Component {
     companies[indexCompany].tasks.push('');
 
     updateState(rootName, 
-      {...companies[indexCompany], tasks: companies[indexCompany].tasks})
+      {companies: companies})
   }
 
   deleteTask(indexCompany, indexTask) {
@@ -69,7 +67,7 @@ class CareerForm extends Component {
     companies[indexCompany].tasks.splice(indexTask, 1);
 
     updateState(rootName, 
-      {...companies[indexCompany], tasks: companies[indexCompany].tasks})
+      {companies: companies})
   }
     
   render() {
@@ -194,7 +192,7 @@ class CareerForm extends Component {
               {editMode ? 'Enviar' : 'Editar'}
           </Button>
 
-          {companies[index].length > 1 &&
+          {companies.length > 1 &&
             <Button
               className='deleteButton'
               variant='danger'

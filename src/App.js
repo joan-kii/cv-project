@@ -4,6 +4,7 @@ import Jumbo from './components/Jumbo';
 import Personal from './components/Personal';
 import Education from './components/Education';
 import Career from './components/Career';
+import Footer from './components/Footer';
 
 class App extends Component {
   constructor() {
@@ -63,6 +64,7 @@ class App extends Component {
         <Personal updateState={this.updateState} info={personal} rootName='personal' />
         <Education updateState={this.updateState} info={education} rootName='education' />
         <Career updateState={this.updateState} info={career} rootName='career' />
+        <Footer />
       </div>
     )
   }
