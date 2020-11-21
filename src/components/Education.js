@@ -26,7 +26,7 @@ class Education extends Component {
   }
   
   render() {
-    const {updateState, info, rootName} = this.props;
+    const {info} = this.props;
     const {schools} = info;
     
     return (
@@ -41,9 +41,7 @@ class Education extends Component {
           <EducationForm 
             key={index}
             index={index}
-            updateState={updateState} 
-            schools={schools} 
-            rootName={rootName} />
+            schools={schools} />
             )}
         </Container>
       </CardStyled>

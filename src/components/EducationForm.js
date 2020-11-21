@@ -1,9 +1,98 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react'; */
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'; 
 
-class EducationForm extends Component {
+// FUNCTIONAL HOOKS
+
+const EducationForm = (props) => {
+
+  const {index, schools} = props;
+  const [schoolsList, setSchoolsList] = useState(schools)
+  const actualSchool = schoolsList[index];
+  const [schoolData, setSchoolData] = useState(actualSchool);
+  const [editMode, setEditMode] = useState(true);
+
+  return (
+    <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
+
+      <Form.Group controlId='formGridSchool'>
+        <Form.Label>Centro Educativo</Form.Label>
+
+        {editMode ?
+        <Form.Control 
+          value={schoolData.school}
+          type='text' 
+          placeholder='Centro Educativo'
+          onChange={(e) => setSchoolData({...schoolData, school: e.target.value})}
+            />
+          : <p>{schoolData.school}</p>
+          }
+
+      </Form.Group>
+
+      <Form.Group controlId='formGridTitle'>
+        <Form.Label>Titulación</Form.Label>
+
+        {editMode ?
+        <Form.Control 
+          value={schoolData.title} 
+          type='text' 
+          placeholder='Titulación'
+          onChange={(e) => setSchoolData({...schoolData, title: e.target.value})}
+          />
+          : <p>{schoolData.title}</p>
+          }
+
+      </Form.Group>
+
+      <Form.Row className='justify-content-between'>
+        <Col>
+          <Form.Group controlId='formGridEndDate'>
+              <Form.Label>Fecha de Finalización</Form.Label>
+
+              {editMode ?
+              <Form.Control 
+                value={schoolData.endDate} 
+                type='date' 
+                placeholder='Fecha'
+                onChange={(e) => setSchoolData({...schoolData, endDate: e.target.value})}
+                />
+                : <p>{schoolData.endDate}</p>
+                }
+
+          </Form.Group>
+        </Col>
+      </Form.Row>
+
+      <Form.Row className='justify-content-between'>
+        <Button
+          className='submitButton'
+          variant={editMode ? 'primary' : 'secondary'}
+          size='lg'
+          onClick={() => setEditMode(!editMode)}>
+            {editMode ? 'Enviar' : 'Editar'}
+        </Button>
+
+        {schools.length > 1 &&
+          <Button
+            className='deleteButton'
+            variant='danger'
+            size='lg'
+            onClick={() => setSchoolsList(schoolsList.splice(index, 1))}>
+              Eliminar
+          </Button>}
+      </Form.Row>   
+    </Form>
+  )
+}
+
+export default EducationForm;
+
+// CLASS COMPONENT
+
+/* class EducationForm extends Component {
   constructor(props) {
     super(props)
 
@@ -122,4 +211,4 @@ class EducationForm extends Component {
   }
 }
 
-export default EducationForm
+export default EducationForm; */

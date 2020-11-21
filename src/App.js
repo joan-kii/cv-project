@@ -61,7 +61,7 @@ class App extends Component {
       <div>
         <Topbar />
         <Jumbo />
-        <Personal updateState={this.updateState} info={personal} rootName='personal' />
+        <Personal info={personal} />
         <Education updateState={this.updateState} info={education} rootName='education' />
         <Career updateState={this.updateState} info={career} rootName='career' />
         <Footer />

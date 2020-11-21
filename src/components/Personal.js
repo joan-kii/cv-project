@@ -1,11 +1,158 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react'; */
+import React, { useState } from 'react';
 import CardStyled from './CardStyled';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 
-class Personal extends Component {
+// FUNCTIONAL HOOKS
+
+const Personal = (props) => {
+
+  const {info} = props;
+  const [editInfo, setEditInfo] = useState(info);
+  const [editMode, setEditMode] = useState(true);
+
+  return (
+    <CardStyled>
+      <Container id='personal' className='mt-5 card' as='section'>
+        <h2 className='title'>Información Personal</h2>
+
+        <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
+
+          <Form.Row className='justify-content-between'>
+            <Col>
+              <Form.Group controlId='formGridName'>
+                <Form.Label>Nombre</Form.Label>
+
+                {editMode ?
+                <Form.Control 
+                  value={editInfo.name} 
+                  type='text' 
+                  placeholder='Nombre' 
+                  onChange={(e) => setEditInfo({...editInfo, name: e.target.value})}
+                  />
+                  : <p>{editInfo.name}</p>
+                  }
+
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group controlId='formGridSecondName'>
+                <Form.Label>Apellidos</Form.Label>
+
+                {editMode ?
+                <Form.Control 
+                  value={editInfo.secondName} 
+                  type='text' 
+                  placeholder='Apellidos' 
+                  onChange={(e) => setEditInfo({...editInfo, secondName: e.target.value})}/>
+                  : <p>{editInfo.secondName}</p>
+                  }
+
+              </Form.Group>
+            </Col>
+          </Form.Row>
+
+          <Form.Group controlId='formGridEmail'>
+            <Form.Label>Email</Form.Label>
+
+            {editMode ?
+            <Form.Control 
+              value={editInfo.email} 
+              type='email' 
+              placeholder='joankii@theodinproject.com' 
+              onChange={(e) => setEditInfo({...editInfo, email: e.target.value})}/>
+              : <p>{editInfo.email}</p>
+              }
+
+          </Form.Group>
+          <Form.Row className='justify-content-between'>
+            <Col>
+              <Form.Group controlId='formGridPhone'>
+                <Form.Label>Teléfono</Form.Label>
+
+                {editMode ?
+                <Form.Control 
+                  value={editInfo.phone} 
+                  type='text' 
+                  placeholder='Teléfono' 
+                  onChange={(e) => setEditInfo({...editInfo, phone: e.target.value})}/>
+                  : <p>{editInfo.phone}</p>
+                  } 
+
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group controlId='formGridPortfolio'>
+                <Form.Label>Portfolio</Form.Label>
+
+                {editMode ?
+                <Form.Control 
+                  value={editInfo.portfolio} 
+                  type='url' 
+                  placeholder='https://github.com/joan-kii' 
+                  onChange={(e) => setEditInfo({...editInfo, portfolio: e.target.value})}/>
+                  : <p>{editInfo.portfolio}</p>
+                  }
+
+              </Form.Group>
+            </Col>
+          </Form.Row>
+
+          <Form.Row className='justify-content-between'>
+            <Col>
+              <Form.Group controlId='formGridCity'>
+                <Form.Label>Ciudad</Form.Label>
+
+                {editMode ?
+                <Form.Control 
+                  value={editInfo.city} 
+                  type='text' 
+                  placeholder='Ciudad' 
+                  onChange={(e) => setEditInfo({...editInfo, city: e.target.value})}/>
+                  : <p>{editInfo.city}</p>
+                  }
+
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group controlId='formGridCountry'>
+                <Form.Label>País</Form.Label>
+
+                {editMode ?
+                <Form.Control 
+                  value={editInfo.country} 
+                  type='text' 
+                  placeholder='País' 
+                  onChange={(e) => setEditInfo({...editInfo, country: e.target.value})}/>
+                  : <p>{editInfo.country}</p>
+                  }
+
+              </Form.Group>
+            </Col>
+          </Form.Row>
+
+          <Button 
+            className='submitButton'
+            variant={editMode ? 'primary' : 'secondary'}
+            size='lg'
+            onClick={() => setEditMode(!editMode)}>
+              {editMode ? 'Enviar' : 'Editar'}
+          </Button>
+
+        </Form>
+      </Container>
+    </CardStyled>    
+  )
+}
+
+export default Personal;
+
+// CLASS COMPONENT
+
+/* class Personal extends Component {
   constructor(props) {
     super(props)
     
@@ -171,4 +318,4 @@ class Personal extends Component {
   }
 }
 
-export default Personal
+export default Personal */
