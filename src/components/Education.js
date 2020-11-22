@@ -1,11 +1,40 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react'; */
+import React, { useState } from 'react';
 import CardStyled from './CardStyled';
 import EducationForm from './EducationForm'; 
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
+// FUNCTIONAL HOOK
 
-class Education extends Component {
+const Education = (props) => {
+  const [schoolsList, setSchools] = useState(props.info);
+  const defaultSchool = {school: '', title: '', endDate: ''};
+
+  return (
+    <CardStyled>
+      <Container id='education' className='mt-5 card' as='section'>
+      <h2 className='title'>Formación</h2>
+      <Button 
+        variant='primary' 
+        onClick={() => setSchools(schoolsList.concat(defaultSchool))}
+        block >+ Anadir Formación +</Button>
+      {schoolsList.map((school, index) => 
+        <EducationForm 
+          key={index}
+          index={index}
+          schools={schoolsList} />
+          )}
+      </Container>
+    </CardStyled>
+  )
+}
+
+export default Education
+
+// CLASS COMPONENT
+
+/* class Education extends Component {
   constructor(props) {
     super(props)
     this.addSchool = this.addSchool.bind(this);
@@ -49,5 +78,5 @@ class Education extends Component {
   }
 }
 
-export default Education
+export default Education */
 

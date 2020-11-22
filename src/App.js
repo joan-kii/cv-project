@@ -22,16 +22,6 @@ class App extends Component {
         city: '',
         country: ''
       },
-
-      education: {
-        schools: [
-          {
-          school: '',
-          title: '',
-          endDate: ''
-          }
-        ]
-      },
       
       career: {
         companies: [
@@ -55,14 +45,30 @@ class App extends Component {
   }
   
   render() {
-    const {personal, education, career} = this.state;
+    const {career} = this.state;
+    const personal = {
+        name: '',
+        secondName: '',
+        email: '',
+        phone: '',
+        portfolio: '',
+        city: '',
+        country: ''
+      };
+    const education = [
+        {
+        school: '',
+        title: '',
+        endDate: ''
+        }
+      ];
 
     return (
       <div>
         <Topbar />
         <Jumbo />
         <Personal info={personal} />
-        <Education updateState={this.updateState} info={education} rootName='education' />
+        <Education info={education} />
         <Career updateState={this.updateState} info={career} rootName='career' />
         <Footer />
       </div>

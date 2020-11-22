@@ -7,12 +7,18 @@ import Button from 'react-bootstrap/Button';
 // FUNCTIONAL HOOKS
 
 const EducationForm = (props) => {
-
   const {index, schools} = props;
-  const [schoolsList, setSchoolsList] = useState(schools)
-  const actualSchool = schoolsList[index];
-  const [schoolData, setSchoolData] = useState(actualSchool);
+  console.log(index)
+  const [schoolsList, setSchoolsList] = useState(schools);
+  const [school, setSchool] = useState(schoolsList[index]);
+  console.log(schoolsList)
+  console.log(school)
   const [editMode, setEditMode] = useState(true);
+  const submitHandler = () => {
+    console.log(schoolsList)
+    setEditMode(!editMode);
+    setSchoolsList(schoolsList);
+  };
 
   return (
     <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
@@ -22,12 +28,12 @@ const EducationForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={schoolData.school}
+          value={school.school}
           type='text' 
           placeholder='Centro Educativo'
-          onChange={(e) => setSchoolData({...schoolData, school: e.target.value})}
+          onChange={(e) => setSchool({...school, school: e.target.value})}
             />
-          : <p>{schoolData.school}</p>
+          : <p>{school.school}</p>
           }
 
       </Form.Group>
@@ -37,12 +43,12 @@ const EducationForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={schoolData.title} 
+          value={school.title} 
           type='text' 
           placeholder='Titulación'
-          onChange={(e) => setSchoolData({...schoolData, title: e.target.value})}
+          onChange={(e) => setSchool({...school, title: e.target.value})}
           />
-          : <p>{schoolData.title}</p>
+          : <p>{school.title}</p>
           }
 
       </Form.Group>
@@ -54,12 +60,12 @@ const EducationForm = (props) => {
 
               {editMode ?
               <Form.Control 
-                value={schoolData.endDate} 
+                value={school.endDate} 
                 type='date' 
                 placeholder='Fecha'
-                onChange={(e) => setSchoolData({...schoolData, endDate: e.target.value})}
+                onChange={(e) => setSchool({...school, endDate: e.target.value})}
                 />
-                : <p>{schoolData.endDate}</p>
+                : <p>{school.endDate}</p>
                 }
 
           </Form.Group>
@@ -71,7 +77,7 @@ const EducationForm = (props) => {
           className='submitButton'
           variant={editMode ? 'primary' : 'secondary'}
           size='lg'
-          onClick={() => setEditMode(!editMode)}>
+          onClick={() => submitHandler()}>
             {editMode ? 'Enviar' : 'Editar'}
         </Button>
 
