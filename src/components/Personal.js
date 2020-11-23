@@ -10,8 +10,7 @@ import Button from 'react-bootstrap/Button'
 
 const Personal = (props) => {
 
-  const {info} = props;
-  const [editInfo, setEditInfo] = useState(info);
+  const [personalData, setPersonalData] = useState(props.personalData);
   const [editMode, setEditMode] = useState(true);
 
   return (
@@ -28,12 +27,12 @@ const Personal = (props) => {
 
                 {editMode ?
                 <Form.Control 
-                  value={editInfo.name} 
+                  value={personalData.name} 
                   type='text' 
                   placeholder='Nombre' 
-                  onChange={(e) => setEditInfo({...editInfo, name: e.target.value})}
+                  onChange={(e) => setPersonalData({...personalData, name: e.target.value})}
                   />
-                  : <p>{editInfo.name}</p>
+                  : <p>{personalData.name}</p>
                   }
 
               </Form.Group>
@@ -44,11 +43,11 @@ const Personal = (props) => {
 
                 {editMode ?
                 <Form.Control 
-                  value={editInfo.secondName} 
+                  value={personalData.secondName} 
                   type='text' 
                   placeholder='Apellidos' 
-                  onChange={(e) => setEditInfo({...editInfo, secondName: e.target.value})}/>
-                  : <p>{editInfo.secondName}</p>
+                  onChange={(e) => setPersonalData({...personalData, secondName: e.target.value})}/>
+                  : <p>{personalData.secondName}</p>
                   }
 
               </Form.Group>
@@ -60,11 +59,11 @@ const Personal = (props) => {
 
             {editMode ?
             <Form.Control 
-              value={editInfo.email} 
+              value={personalData.email} 
               type='email' 
               placeholder='joankii@theodinproject.com' 
-              onChange={(e) => setEditInfo({...editInfo, email: e.target.value})}/>
-              : <p>{editInfo.email}</p>
+              onChange={(e) => setPersonalData({...personalData, email: e.target.value})}/>
+              : <p>{personalData.email}</p>
               }
 
           </Form.Group>
@@ -75,11 +74,11 @@ const Personal = (props) => {
 
                 {editMode ?
                 <Form.Control 
-                  value={editInfo.phone} 
+                  value={personalData.phone} 
                   type='text' 
                   placeholder='Teléfono' 
-                  onChange={(e) => setEditInfo({...editInfo, phone: e.target.value})}/>
-                  : <p>{editInfo.phone}</p>
+                  onChange={(e) => setPersonalData({...personalData, phone: e.target.value})}/>
+                  : <p>{personalData.phone}</p>
                   } 
 
               </Form.Group>
@@ -90,11 +89,11 @@ const Personal = (props) => {
 
                 {editMode ?
                 <Form.Control 
-                  value={editInfo.portfolio} 
+                  value={personalData.portfolio} 
                   type='url' 
                   placeholder='https://github.com/joan-kii' 
-                  onChange={(e) => setEditInfo({...editInfo, portfolio: e.target.value})}/>
-                  : <p>{editInfo.portfolio}</p>
+                  onChange={(e) => setPersonalData({...personalData, portfolio: e.target.value})}/>
+                  : <p>{personalData.portfolio}</p>
                   }
 
               </Form.Group>
@@ -108,11 +107,11 @@ const Personal = (props) => {
 
                 {editMode ?
                 <Form.Control 
-                  value={editInfo.city} 
+                  value={personalData.city} 
                   type='text' 
                   placeholder='Ciudad' 
-                  onChange={(e) => setEditInfo({...editInfo, city: e.target.value})}/>
-                  : <p>{editInfo.city}</p>
+                  onChange={(e) => setPersonalData({...personalData, city: e.target.value})}/>
+                  : <p>{personalData.city}</p>
                   }
 
               </Form.Group>
@@ -123,11 +122,11 @@ const Personal = (props) => {
 
                 {editMode ?
                 <Form.Control 
-                  value={editInfo.country} 
+                  value={personalData.country} 
                   type='text' 
                   placeholder='País' 
-                  onChange={(e) => setEditInfo({...editInfo, country: e.target.value})}/>
-                  : <p>{editInfo.country}</p>
+                  onChange={(e) => setPersonalData({...personalData, country: e.target.value})}/>
+                  : <p>{personalData.country}</p>
                   }
 
               </Form.Group>

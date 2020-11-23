@@ -8,7 +8,9 @@ import Button from 'react-bootstrap/Button';
 // FUNCTIONAL HOOK
 
 const Education = (props) => {
-  const [schoolsList, setSchools] = useState(props.info);
+
+  const [schoolsList, setSchoolsList] = useState(props.schoolsList);
+  console.log(schoolsList)
   const defaultSchool = {school: '', title: '', endDate: ''};
 
   return (
@@ -17,7 +19,7 @@ const Education = (props) => {
       <h2 className='title'>Formación</h2>
       <Button 
         variant='primary' 
-        onClick={() => setSchools(schoolsList.concat(defaultSchool))}
+        onClick={() => setSchoolsList(schoolsList.concat(defaultSchool))}
         block >+ Anadir Formación +</Button>
       {schoolsList.map((school, index) => 
         <EducationForm 
@@ -28,7 +30,7 @@ const Education = (props) => {
       </Container>
     </CardStyled>
   )
-}
+};
 
 export default Education
 

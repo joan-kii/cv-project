@@ -7,17 +7,16 @@ import Button from 'react-bootstrap/Button';
 // FUNCTIONAL HOOKS
 
 const EducationForm = (props) => {
+
   const {index, schools} = props;
-  console.log(index)
   const [schoolsList, setSchoolsList] = useState(schools);
-  const [school, setSchool] = useState(schoolsList[index]);
   console.log(schoolsList)
-  console.log(school)
+  const [schoolData, setSchoolData] = useState(schoolsList[index]);
+  console.log(schoolData)
   const [editMode, setEditMode] = useState(true);
   const submitHandler = () => {
-    console.log(schoolsList)
     setEditMode(!editMode);
-    setSchoolsList(schoolsList);
+    setSchoolsList(schoolsList.concat(schoolData));
   };
 
   return (
@@ -28,12 +27,12 @@ const EducationForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={school.school}
+          value={schoolData.school}
           type='text' 
           placeholder='Centro Educativo'
-          onChange={(e) => setSchool({...school, school: e.target.value})}
+          onChange={(e) => setSchoolData({...schoolData, school: e.target.value})}
             />
-          : <p>{school.school}</p>
+          : <p>{schoolData.school}</p>
           }
 
       </Form.Group>
@@ -43,12 +42,12 @@ const EducationForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={school.title} 
+          value={schoolData.title} 
           type='text' 
           placeholder='Titulación'
-          onChange={(e) => setSchool({...school, title: e.target.value})}
+          onChange={(e) => setSchoolData({...schoolData, title: e.target.value})}
           />
-          : <p>{school.title}</p>
+          : <p>{schoolData.title}</p>
           }
 
       </Form.Group>
@@ -60,12 +59,12 @@ const EducationForm = (props) => {
 
               {editMode ?
               <Form.Control 
-                value={school.endDate} 
+                value={schoolData.endDate} 
                 type='date' 
                 placeholder='Fecha'
-                onChange={(e) => setSchool({...school, endDate: e.target.value})}
+                onChange={(e) => setSchoolData({...schoolData, endDate: e.target.value})}
                 />
-                : <p>{school.endDate}</p>
+                : <p>{schoolData.endDate}</p>
                 }
 
           </Form.Group>
