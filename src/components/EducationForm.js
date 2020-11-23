@@ -8,16 +8,10 @@ import Button from 'react-bootstrap/Button';
 
 const EducationForm = (props) => {
 
-  const {index, schools} = props;
-  const [schoolsList, setSchoolsList] = useState(schools);
+  const {index} = props;
+  const [schoolsList, setSchoolsList] = useState(props.schools);
   console.log(schoolsList)
-  const [schoolData, setSchoolData] = useState(schoolsList[index]);
-  console.log(schoolData)
   const [editMode, setEditMode] = useState(true);
-  const submitHandler = () => {
-    setEditMode(!editMode);
-    setSchoolsList(schoolsList.concat(schoolData));
-  };
 
   return (
     <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
@@ -27,12 +21,12 @@ const EducationForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={schoolData.school}
+          value={schoolsList[index].school}
           type='text' 
           placeholder='Centro Educativo'
-          onChange={(e) => setSchoolData({...schoolData, school: e.target.value})}
-            />
-          : <p>{schoolData.school}</p>
+          onChange={(e) => setSchoolsList([...schoolsList], 
+            schoolsList[index].school = e.target.value)} />
+          : <p>{schoolsList[index].school}</p>
           }
 
       </Form.Group>
@@ -42,12 +36,12 @@ const EducationForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={schoolData.title} 
+          value={schoolsList[index].title} 
           type='text' 
           placeholder='Titulación'
-          onChange={(e) => setSchoolData({...schoolData, title: e.target.value})}
-          />
-          : <p>{schoolData.title}</p>
+          onChange={(e) => setSchoolsList([...schoolsList], 
+            schoolsList[index].title = e.target.value)} />
+          : <p>{schoolsList[index].title}</p>
           }
 
       </Form.Group>
@@ -59,12 +53,12 @@ const EducationForm = (props) => {
 
               {editMode ?
               <Form.Control 
-                value={schoolData.endDate} 
+                value={schoolsList[index].endDate} 
                 type='date' 
                 placeholder='Fecha'
-                onChange={(e) => setSchoolData({...schoolData, endDate: e.target.value})}
-                />
-                : <p>{schoolData.endDate}</p>
+                onChange={(e) => setSchoolsList([...schoolsList], 
+                  schoolsList[index].endDate = e.target.value)} />
+                : <p>{schoolsList[index].endDate}</p>
                 }
 
           </Form.Group>
@@ -76,11 +70,11 @@ const EducationForm = (props) => {
           className='submitButton'
           variant={editMode ? 'primary' : 'secondary'}
           size='lg'
-          onClick={() => submitHandler()}>
+          onClick={() => setEditMode(!editMode)}>
             {editMode ? 'Enviar' : 'Editar'}
         </Button>
 
-        {schools.length > 1 &&
+        {schoolsList.length > 1 &&
           <Button
             className='deleteButton'
             variant='danger'

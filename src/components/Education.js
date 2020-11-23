@@ -11,6 +11,7 @@ const Education = (props) => {
 
   const [schoolsList, setSchoolsList] = useState(props.schoolsList);
   console.log(schoolsList)
+
   const defaultSchool = {school: '', title: '', endDate: ''};
 
   return (
@@ -19,7 +20,7 @@ const Education = (props) => {
       <h2 className='title'>Formación</h2>
       <Button 
         variant='primary' 
-        onClick={() => setSchoolsList(schoolsList.concat(defaultSchool))}
+        onClick={() => setSchoolsList([...schoolsList, defaultSchool])}
         block >+ Anadir Formación +</Button>
       {schoolsList.map((school, index) => 
         <EducationForm 
