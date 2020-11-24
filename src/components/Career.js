@@ -1,11 +1,47 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react'; */
+import React, { useState } from 'react';
 import CardStyled from './CardStyled';
 import CareerForm from './CareerForm'; 
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
+// FUNCTIONAL HOOK
 
-class Career extends Component {
+const Career = (props) => {
+  const [companiesList, setCompaniesList] = useState(props.companiesList);
+  const defaultCompany = {
+    company: '',
+    position: '',
+    tasks: [''],
+    duration: '',
+    endDate: ''
+    };
+  
+
+  return (
+    <CardStyled>
+      <Container id='career' className='mt-5 card' as='section'>
+      <h2 className='title'>Profesional</h2>
+      <Button 
+        variant='primary' 
+        onClick={() => setCompaniesList([...companiesList, defaultCompany])}
+        block>+ Anadir Experiencia +</Button>
+        {companiesList.map((company, index) => 
+          <CareerForm 
+            key={index}
+            index={index}
+            companies={companiesList} />
+            )}
+      </Container>
+    </CardStyled>
+  )
+};
+
+export default Career;
+
+// CLASS COMPONENT
+
+/* class Career extends Component {
   constructor(props) {
     super(props)
 
@@ -60,4 +96,4 @@ class Career extends Component {
   }
 }
 
-export default Career
+export default Career */

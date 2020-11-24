@@ -8,9 +8,8 @@ import Button from 'react-bootstrap/Button';
 
 const EducationForm = (props) => {
 
-  const {index} = props;
+  const {index, deleteSchool} = props;
   const [schoolsList, setSchoolsList] = useState(props.schools);
-  console.log(schoolsList)
   const [editMode, setEditMode] = useState(true);
 
   return (
@@ -79,7 +78,7 @@ const EducationForm = (props) => {
             className='deleteButton'
             variant='danger'
             size='lg'
-            onClick={() => setSchoolsList(schoolsList.splice(index, 1))}>
+            onClick={() => deleteSchool(index)}>
               Eliminar
           </Button>}
       </Form.Row>   

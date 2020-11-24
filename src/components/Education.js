@@ -10,10 +10,12 @@ import Button from 'react-bootstrap/Button';
 const Education = (props) => {
 
   const [schoolsList, setSchoolsList] = useState(props.schoolsList);
-  console.log(schoolsList)
-
   const defaultSchool = {school: '', title: '', endDate: ''};
-
+  const deleteSchool = (index) => {
+    schoolsList.splice(index, 1);
+    setSchoolsList([...schoolsList]);
+  };
+  
   return (
     <CardStyled>
       <Container id='education' className='mt-5 card' as='section'>
@@ -26,7 +28,8 @@ const Education = (props) => {
         <EducationForm 
           key={index}
           index={index}
-          schools={schoolsList} />
+          schools={schoolsList}
+          deleteSchool={deleteSchool} />
           )}
       </Container>
     </CardStyled>

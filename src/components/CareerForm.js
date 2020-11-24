@@ -1,9 +1,150 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react'; */
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'; 
 
-class CareerForm extends Component {
+// FUNCTIONAL HOOK
+
+const CareerForm = (props) => {
+
+  const [editMode, setEditMode] = useState(true);
+
+  return (
+    <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
+
+      <Form.Group controlId='formGridCompany'>
+        <Form.Label>Empresa</Form.Label>
+
+        {editMode ?
+        <Form.Control 
+          value={company}
+          type='text' 
+          placeholder='Empresa'
+          onChange={(e) => this.updateCompany('company', index, e.target.value)}
+            />
+          : <p>{company}</p>
+          }
+
+      </Form.Group>
+
+      <Form.Group controlId='formGridPosition'>
+        <Form.Label>Cargo</Form.Label>
+
+        {editMode ?
+        <Form.Control 
+          value={position} 
+          type='text' 
+          placeholder='Cargo'
+          onChange={(e) => this.updateCompany('position', index, e.target.value)}
+            />
+          : <p>{position}</p>
+          }
+
+      </Form.Group>
+
+      <Form.Group controlId='formGridTasks'>
+        <Form.Label>
+          Tareas {editMode && (
+            <Button
+            className='addTaskButton'
+            variant='light'
+            onClick={() => this.addTask(index)}>+</Button>)}
+        </Form.Label>
+
+        {editMode ? companies[index].tasks.map((task, indexTask) => 
+          <div key={indexTask} >
+            <Form.Row>
+              <Col>
+                <Form.Control 
+                  className='inputTask'
+                  value={task} 
+                  type='text' 
+                  placeholder='Tareas'
+                  onChange={(e) => this.updateCareer(index, indexTask, e.target.value)}
+                  />
+              </Col>
+              <Col>
+              {companies[index].tasks.length > 1 &&
+                (<Button 
+                  className='deleteTaskButton'
+                  variant='outline-danger'
+                  size='sm'
+                  onClick={() => this.deleteTask(index, indexTask)}>
+                    Borrar
+                  </Button>)}
+              </Col>
+            </Form.Row>      
+          </div>)
+            : <p>{tasks.join(' - ')}</p>
+            }
+
+      </Form.Group>
+
+      <Form.Row className='justify-content-between'>
+        <Col>
+          <Form.Group controlId='formGridDuration'>
+              <Form.Label>Duración</Form.Label>
+
+              {editMode ?
+              <Form.Control 
+                value={duration} 
+                type='text' 
+                placeholder='3 años y 6 meses'
+                onChange={(e) => this.updateCompany('duration', index, e.target.value)}
+                  />
+                : <p>{duration}</p>
+                }
+
+          </Form.Group>
+        </Col>
+
+        <Col>
+          <Form.Group controlId='formGridEndDate'>
+              <Form.Label>Fecha de Finalización</Form.Label>
+
+              {editMode ?
+              <Form.Control 
+                value={endDate} 
+                type='date' 
+                placeholder='Fecha'
+                onChange={(e) => this.updateCompany('endDate', index, e.target.value)}
+                  />
+                : <p>{endDate}</p>
+                }
+
+          </Form.Group>
+        </Col>
+      </Form.Row>
+
+      <Form.Row className='justify-content-between'>
+        <Button
+          className='submitButton'
+          variant={editMode ? 'primary' : 'secondary'}
+          size='lg'
+          onClick={() => setEditMode(!editMode)}>
+            {editMode ? 'Enviar' : 'Editar'}
+        </Button>
+
+        {companies.length > 1 &&
+          <Button
+            className='deleteButton'
+            variant='danger'
+            size='lg'
+            onClick={() => this.deleteCompany(index)} >
+              Eliminar
+          </Button>}
+
+      </Form.Row>   
+    </Form>
+  )
+};
+
+export default CareerForm;
+
+// CLASS COMPONENT
+
+/* class CareerForm extends Component {
   constructor(props) {
     super(props)
 
@@ -207,4 +348,4 @@ class CareerForm extends Component {
   }
 }
 
-export default CareerForm
+export default CareerForm */
