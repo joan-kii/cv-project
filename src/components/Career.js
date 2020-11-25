@@ -17,9 +17,11 @@ const Career = (props) => {
     duration: '',
     endDate: ''
     };
+
   const deleteCompany = (index) => {
     companiesList.splice(index, 1);
     setCompaniesList([...companiesList]);
+    console.log(companiesList)
   };
   
 

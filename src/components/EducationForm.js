@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 // FUNCTIONAL HOOKS
 
 const EducationForm = (props) => {
+  console.log(props.schools)
 
   const {index, deleteSchool} = props;
   const [schoolsList, setSchoolsList] = useState(props.schools);

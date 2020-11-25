@@ -11,9 +11,12 @@ const Education = (props) => {
 
   const [schoolsList, setSchoolsList] = useState(props.schoolsList);
   const defaultSchool = {school: '', title: '', endDate: ''};
+
   const deleteSchool = (index) => {
     schoolsList.splice(index, 1);
-    setSchoolsList([...schoolsList]);
+    setSchoolsList(schoolsList);
+    console.log(index)
+    console.log(schoolsList)
   };
   
   return (

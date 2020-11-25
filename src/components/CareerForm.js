@@ -11,12 +11,19 @@ const CareerForm = (props) => {
   const {index, deleteCompany} = props;
   const [companiesList, setCompaniesList] = useState(props.companiesList);
   const [tasksList, setTasksList] = useState(companiesList[index].tasks);
-  console.log(tasksList)
   const [editMode, setEditMode] = useState(true);
+
   const deleteTask = (indexTask) => {
     tasksList.splice(indexTask, 1);
     setTasksList([...tasksList]);
-  }
+  };
+  
+  const updateTasksList = (indexTask, value) => {
+    setTasksList(prevTasksList => [...tasksList], 
+      tasksList[indexTask] = value);
+    setCompaniesList([...companiesList],
+      companiesList[index].tasks = tasksList);
+  };
 
   return (
     <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
@@ -66,11 +73,10 @@ const CareerForm = (props) => {
               <Col>
                 <Form.Control 
                   className='inputTask'
-                  value={task} 
                   type='text' 
                   placeholder='Tareas'
-                  onChange={(e) => setTasksList([...tasksList], 
-                    task= e.target.value)} />
+                  onChange={(e) => updateTasksList(indexTask,
+                    e.target.value)} />
               </Col>
               <Col>
               {tasksList.length > 1 &&
