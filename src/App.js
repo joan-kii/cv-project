@@ -38,7 +38,8 @@ const App = () => {
   ];
 
   /* console.log('Infromación personal: ', personal)
-  console.log('Formación: ', education) */
+  console.log('Formación: ', education) 
+  console.log(career)*/
 
   return (
     <div>
@@ -46,7 +47,7 @@ const App = () => {
       <Jumbo />
       <Personal personalData={personal} />
       <Education schoolsList={education} />
-      {/*<Career companiesList={career} /> */}
+      <Career companiesList={career} />
       <Footer />
     </div>
   )

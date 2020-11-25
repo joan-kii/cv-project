@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 // FUNCTIONAL HOOK
 
 const Career = (props) => {
+  
   const [companiesList, setCompaniesList] = useState(props.companiesList);
   const defaultCompany = {
     company: '',
@@ -16,6 +17,10 @@ const Career = (props) => {
     duration: '',
     endDate: ''
     };
+  const deleteCompany = (index) => {
+    companiesList.splice(index, 1);
+    setCompaniesList([...companiesList]);
+  };
   
 
   return (
@@ -30,7 +35,8 @@ const Career = (props) => {
           <CareerForm 
             key={index}
             index={index}
-            companies={companiesList} />
+            companiesList={companiesList} 
+            deleteCompany={deleteCompany} />
             )}
       </Container>
     </CardStyled>

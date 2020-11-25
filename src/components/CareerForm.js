@@ -8,7 +8,15 @@ import Button from 'react-bootstrap/Button';
 
 const CareerForm = (props) => {
 
+  const {index, deleteCompany} = props;
+  const [companiesList, setCompaniesList] = useState(props.companiesList);
+  const [tasksList, setTasksList] = useState(companiesList[index].tasks);
+  console.log(tasksList)
   const [editMode, setEditMode] = useState(true);
+  const deleteTask = (indexTask) => {
+    tasksList.splice(indexTask, 1);
+    setTasksList([...tasksList]);
+  }
 
   return (
     <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
@@ -18,12 +26,12 @@ const CareerForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={company}
+          value={companiesList[index].company}
           type='text' 
           placeholder='Empresa'
-          onChange={(e) => this.updateCompany('company', index, e.target.value)}
-            />
-          : <p>{company}</p>
+          onChange={(e) => setCompaniesList([...companiesList], 
+            companiesList[index].company = e.target.value)} />
+          : <p>{companiesList[index].company}</p>
           }
 
       </Form.Group>
@@ -33,12 +41,12 @@ const CareerForm = (props) => {
 
         {editMode ?
         <Form.Control 
-          value={position} 
+          value={companiesList[index].position} 
           type='text' 
           placeholder='Cargo'
-          onChange={(e) => this.updateCompany('position', index, e.target.value)}
-            />
-          : <p>{position}</p>
+          onChange={(e) => setCompaniesList([...companiesList], 
+            companiesList[index].position = e.target.value)} />
+          : <p>{companiesList[index].position}</p>
           }
 
       </Form.Group>
@@ -49,10 +57,10 @@ const CareerForm = (props) => {
             <Button
             className='addTaskButton'
             variant='light'
-            onClick={() => this.addTask(index)}>+</Button>)}
+            onClick={() => setTasksList([...tasksList, ''])} >+</Button>)}
         </Form.Label>
 
-        {editMode ? companies[index].tasks.map((task, indexTask) => 
+        {editMode ? tasksList.map((task, indexTask) => 
           <div key={indexTask} >
             <Form.Row>
               <Col>
@@ -61,22 +69,22 @@ const CareerForm = (props) => {
                   value={task} 
                   type='text' 
                   placeholder='Tareas'
-                  onChange={(e) => this.updateCareer(index, indexTask, e.target.value)}
-                  />
+                  onChange={(e) => setTasksList([...tasksList], 
+                    task= e.target.value)} />
               </Col>
               <Col>
-              {companies[index].tasks.length > 1 &&
+              {tasksList.length > 1 &&
                 (<Button 
                   className='deleteTaskButton'
                   variant='outline-danger'
                   size='sm'
-                  onClick={() => this.deleteTask(index, indexTask)}>
+                  onClick={() => deleteTask(indexTask)} >
                     Borrar
                   </Button>)}
               </Col>
             </Form.Row>      
           </div>)
-            : <p>{tasks.join(' - ')}</p>
+            : <p>{tasksList.join(' - ')}</p>
             }
 
       </Form.Group>
@@ -88,12 +96,12 @@ const CareerForm = (props) => {
 
               {editMode ?
               <Form.Control 
-                value={duration} 
+                value={companiesList[index].duration} 
                 type='text' 
                 placeholder='3 años y 6 meses'
-                onChange={(e) => this.updateCompany('duration', index, e.target.value)}
-                  />
-                : <p>{duration}</p>
+                onChange={(e) => setCompaniesList([...companiesList], 
+                  companiesList[index].duration = e.target.value)} />
+                : <p>{companiesList[index].duration}</p>
                 }
 
           </Form.Group>
@@ -105,12 +113,12 @@ const CareerForm = (props) => {
 
               {editMode ?
               <Form.Control 
-                value={endDate} 
+                value={companiesList[index].endDate} 
                 type='date' 
                 placeholder='Fecha'
-                onChange={(e) => this.updateCompany('endDate', index, e.target.value)}
-                  />
-                : <p>{endDate}</p>
+                onChange={(e) => setCompaniesList([...companiesList], 
+                  companiesList[index].endDate = e.target.value)} />
+                : <p>{companiesList[index].endDate}</p>
                 }
 
           </Form.Group>
@@ -126,12 +134,12 @@ const CareerForm = (props) => {
             {editMode ? 'Enviar' : 'Editar'}
         </Button>
 
-        {companies.length > 1 &&
+        {companiesList.length > 1 &&
           <Button
             className='deleteButton'
             variant='danger'
             size='lg'
-            onClick={() => this.deleteCompany(index)} >
+            onClick={() => deleteCompany(index)} >
               Eliminar
           </Button>}
 
