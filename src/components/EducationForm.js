@@ -1,5 +1,5 @@
 /* import React, { Component } from 'react'; */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'; 
@@ -7,14 +7,17 @@ import Button from 'react-bootstrap/Button';
 // FUNCTIONAL HOOKS
 
 const EducationForm = (props) => {
-  console.log(props.schools)
-
+  
   const {index, deleteSchool} = props;
-  const [schoolsList, setSchoolsList] = useState(props.schools);
+  const [schoolsList, setSchoolsList] = useState(props.schoolsList);
   const [editMode, setEditMode] = useState(true);
 
+  useEffect(() => { 
+    setSchoolsList(props.schoolsList)
+  }, [props.schoolsList])
+
   return (
-    <Form className='mt-4' onSubmit={(e)=>e.preventDefault()}>
+    <Form className='mt-4' onSubmit={(e) => e.preventDefault()} >
 
       <Form.Group controlId='formGridSchool'>
         <Form.Label>Centro Educativo</Form.Label>

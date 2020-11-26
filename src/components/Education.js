@@ -14,9 +14,7 @@ const Education = (props) => {
 
   const deleteSchool = (index) => {
     schoolsList.splice(index, 1);
-    setSchoolsList(schoolsList);
-    console.log(index)
-    console.log(schoolsList)
+    setSchoolsList([...schoolsList]);
   };
   
   return (
@@ -31,7 +29,7 @@ const Education = (props) => {
         <EducationForm 
           key={index}
           index={index}
-          schools={schoolsList}
+          schoolsList={schoolsList}
           deleteSchool={deleteSchool} />
           )}
       </Container>

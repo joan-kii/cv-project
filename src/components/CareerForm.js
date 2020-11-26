@@ -1,5 +1,5 @@
 /* import React, { Component } from 'react'; */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'; 
@@ -17,6 +17,14 @@ const CareerForm = (props) => {
     tasksList.splice(indexTask, 1);
     setTasksList([...tasksList]);
   };
+
+  useEffect(() => { 
+    setCompaniesList(props.companiesList)
+  }, [props.companiesList])
+
+  useEffect(() => {
+    setTasksList(tasksList)
+  }, [tasksList])
   
   const updateTasksList = (indexTask, value) => {
     setTasksList(prevTasksList => [...tasksList], 
@@ -73,6 +81,7 @@ const CareerForm = (props) => {
               <Col>
                 <Form.Control 
                   className='inputTask'
+                  value={tasksList[indexTask]}
                   type='text' 
                   placeholder='Tareas'
                   onChange={(e) => updateTasksList(indexTask,

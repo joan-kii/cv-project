@@ -21,10 +21,8 @@ const Career = (props) => {
   const deleteCompany = (index) => {
     companiesList.splice(index, 1);
     setCompaniesList([...companiesList]);
-    console.log(companiesList)
   };
   
-
   return (
     <CardStyled>
       <Container id='career' className='mt-5 card' as='section'>
