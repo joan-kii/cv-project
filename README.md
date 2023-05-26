@@ -1,3 +1,10 @@
-Generador de Currículum Vitae. Ejercicio de "The Odín Project" basado en React.
+## [Live Demo](https://joan-kii.github.io/cv-project/)
 
-[cv-project](https://joan-kii.github.io/cv-project/).
+## Overview
+This is an exercise for The Odin Project's JavaScript path. A web app for create CV's.
+
+## Dependencies
+  - React
+
+## Styles
+  - Styled Components
